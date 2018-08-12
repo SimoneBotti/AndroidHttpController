@@ -1,5 +1,3 @@
-package com.leaktd.airlinecompare.Controller;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,7 +17,6 @@ import java.util.Map;
 public class HttpPostController{
     private static final String TAG = HttpPostController.class.getName();
 
-
     private String query,urls;
     private Context context;
     private Controller controller;
@@ -27,9 +24,8 @@ public class HttpPostController{
     private String reply;
     private boolean saveUser=false,getUser=false;
 
-    public HttpPostController() {
-       // Controller.initialize();
-        controller=Controller.getInstance();
+    public HttpPostController(Controller controller) {
+        this.controller=controller;
     }
     public String fillUserUri(HashMap<String,String> values){
         Uri.Builder builder = new Uri.Builder();
@@ -45,6 +41,15 @@ public class HttpPostController{
     public void sendHttpPostRequest(String url) {
         this.urls=url;
         this.query=url;
+        Thread HttpThread = new Thread(loadRunnable);
+        HttpThread.start();
+    }
+    public void sendHttpPostRequest(String url,HashMap<String,String> values) {
+        this.urls=url;
+        this.query=url;
+        Log.d(TAG,"Filling query");
+        query=fillUserUri(values);
+        Log.d(TAG,"Query:"+query);
         Thread HttpThread = new Thread(loadRunnable);
         HttpThread.start();
     }
@@ -104,6 +109,3 @@ public class HttpPostController{
 
 
 }
-
-
-
