@@ -5,7 +5,7 @@ HttpPostController is a Java class that helps to manage Post Request in Android.
 <br>
 -CONSTRUCTOR:
 <br><br>
-  HttpPostController(Controller controller);<br>
+  <b>HttpPostController(Controller controller);</b><br>
     In order to manage the class correctly you have to pass the controller of your application.<br><br>
 -METHODS:<br><br>
   1)sendHttpPostRequest(String url);<br>
